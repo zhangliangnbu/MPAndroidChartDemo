@@ -1,22 +1,17 @@
 package com.liang.mpandroidchartdemo
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import kotlin.math.roundToInt
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * created by zhangliang on 2018/7/26
+ * profile: https://github.com/zhangliangnbu or zhangliangnbu@163.com
  */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
+object Evaluator {
 
-    @Test
-    fun testEvaluation() {
+    /**
+     *
+     */
+    fun getIntegers(min:Float, max:Float, gapCount:Int) {
 
         val max = 1.3388
         val min = -0.451
@@ -48,5 +43,22 @@ class ExampleUnitTest {
         }
     }
 
+    /**
+     * rounds the given number to the next significant number
+     *
+     * @param number
+     * @return
+     */
+    fun roundToNextSignificant(number: Double): Float {
+        if (java.lang.Double.isInfinite(number) ||
+                java.lang.Double.isNaN(number) ||
+                number == 0.0)
+            return 0f
 
+        val d = Math.ceil(Math.log10(if (number < 0) -number else number).toFloat().toDouble()).toFloat()
+        val pw = 1 - d.toInt()
+        val magnitude = Math.pow(10.0, pw.toDouble()).toFloat()
+        val shifted = Math.round(number * magnitude)
+        return shifted / magnitude
+    }
 }

@@ -22,12 +22,13 @@ class MyCustomXAxisValueFormatter(private val mViewPortHandler: ViewPortHandler)
 
 
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
-        return if(value == axis.mEntries[0]) {
-            println("value->$value")
-            ""
-        } else {
-            sdf.format(Date(value.toLong()))
-        }
+//        return if(value == axis.mEntries[0]) {
+//            println("value->$value")
+//            ""
+//        } else {
+//            sdf.format(Date(value.toLong()))
+//        }
+        return sdf.format(Date(value.toLong()))
 
 
         //Log.i("TRANS", "x: " + viewPortHandler.getTransX() + ", y: " + viewPortHandler.getTransY());
